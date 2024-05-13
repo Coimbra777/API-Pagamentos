@@ -5,8 +5,7 @@ use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
+// Ex: http://localhost:8989/api/v1/users
 Route::prefix('v1')->group(function () {
   Route::get('/users', [UserController::class, 'index']);
   Route::get('/users/{user}', [UserController::class, 'show']);

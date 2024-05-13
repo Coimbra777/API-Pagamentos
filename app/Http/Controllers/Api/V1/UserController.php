@@ -5,64 +5,52 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\UserResource;
 use Illuminate\Http\Request;
-use \App\Models\User;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function index()
     {
-        // return User::all();
-        return UserResource::collection(User::all());
+        // Implemente a lógica para listar os usuários, se necessário
+        $users = $this->userService->getAllUsers();
+
+        return UserResource::collection($users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Implemente a lógica para exibir o formulário de criação de usuário, se necessário
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // Implemente a lógica para armazenar um novo usuário com base nos dados da requisição
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        return new UserResource(User::where('id', $id)->first());
+        return new UserResource($this->userService->getUserById($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        // Implemente a lógica para exibir o formulário de edição de usuário, se necessário
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        // Implemente a lógica para atualizar os dados de um usuário com base nos dados da requisição
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        // Implemente a lógica para excluir um usuário
     }
 }
