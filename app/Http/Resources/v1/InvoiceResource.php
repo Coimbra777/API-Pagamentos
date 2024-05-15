@@ -21,7 +21,7 @@ class InvoiceResource extends JsonResource
                 'fullName' => $this->user->firstName . ' ' . $this->user->lastName,
                 'email' => $this->user->email,
             ],
-            'type' => $this->types[$this->type],
+            'type' => $this->types,
             'value' => 'R$ ' . number_format($this->value, 2, ',', '.'),
             'paid' => $paid ? 'Pago' : 'Não Pago',
             'paymentDate' => $paid ? Carbon::parse($this->payment_date)->format('d/m/Y H:i:s') : null,
